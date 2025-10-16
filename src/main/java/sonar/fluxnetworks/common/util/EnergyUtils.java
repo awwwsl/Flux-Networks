@@ -31,14 +31,6 @@ public final class EnergyUtils {
     private static final List<IItemEnergyConnector> ITEM_ENERGY_CONNECTORS = new ArrayList<>();
     private static final Set<Item> ITEM_BLACKLIST = new HashSet<>();
 
-    static {
-        BLOCK_ENERGY_CONNECTORS.add(FNEnergyConnector.INSTANCE);
-        ITEM_ENERGY_CONNECTORS.add(FNEnergyConnector.INSTANCE);
-
-        BLOCK_ENERGY_CONNECTORS.add(ForgeEnergyConnector.INSTANCE);
-        ITEM_ENERGY_CONNECTORS.add(ForgeEnergyConnector.INSTANCE);
-    }
-
     private EnergyUtils() {
     }
 
@@ -55,10 +47,17 @@ public final class EnergyUtils {
             ITEM_ENERGY_CONNECTORS.add(IC2EnergyHandler.INSTANCE);
         }*/
 
+        // gtceu implements forge energy api so register earlier than forge energy
         if (FluxConfig.enableGTCEU && ModList.get().isLoaded("gtceu")) {
             BLOCK_ENERGY_CONNECTORS.add(GTCEUEnergyConnector.INSTANCE);
             ITEM_ENERGY_CONNECTORS.add(GTCEUEnergyConnector.INSTANCE);
         }
+
+        BLOCK_ENERGY_CONNECTORS.add(FNEnergyConnector.INSTANCE);
+        ITEM_ENERGY_CONNECTORS.add(FNEnergyConnector.INSTANCE);
+
+        BLOCK_ENERGY_CONNECTORS.add(ForgeEnergyConnector.INSTANCE);
+        ITEM_ENERGY_CONNECTORS.add(ForgeEnergyConnector.INSTANCE);
     }
 
     public static void reloadBlacklist(@Nonnull List<String> blockBlacklist, @Nonnull List<String> itemBlacklist) {
