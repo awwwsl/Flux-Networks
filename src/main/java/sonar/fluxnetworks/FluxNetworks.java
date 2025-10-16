@@ -22,10 +22,12 @@ public class FluxNetworks {
 
     private static boolean sCuriosLoaded;
     private static boolean sModernUILoaded;
+    private static boolean sGTCEULoaded;
 
     public FluxNetworks() {
         sCuriosLoaded = ModList.get().isLoaded("curios");
         sModernUILoaded = ModList.get().isLoaded("modernui");
+        sGTCEULoaded = ModList.get().isLoaded("gtceu");
 
         FluxConfig.init();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(FluxNetworks::onCommonSetup);
@@ -37,6 +39,9 @@ public class FluxNetworks {
 
     public static boolean isModernUILoaded() {
         return sModernUILoaded;
+    }
+    public static boolean isGTCEULoaded() {
+        return sGTCEULoaded;
     }
 
     @Nonnull
