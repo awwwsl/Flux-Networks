@@ -1,6 +1,7 @@
 package sonar.fluxnetworks.common.device;
 
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
+import com.gregtechceu.gtceu.api.capability.ILaserContainer;
 import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -162,9 +163,9 @@ public class TileFluxPlug extends TileFluxConnector implements IFluxPlug {
     }
 
     @ParametersAreNonnullByDefault
-    private class GTCEUEnergyContainer implements IEnergyContainer {
+    private class GTCEUEnergyContainer implements IEnergyContainer, ILaserContainer {
         public static boolean isCapabilitySupported(Capability<?> cap) {
-            return cap == GTCapability.CAPABILITY_ENERGY_CONTAINER;
+            return cap == GTCapability.CAPABILITY_ENERGY_CONTAINER || cap == GTCapability.CAPABILITY_LASER;
         }
         private final Direction direction;
 
